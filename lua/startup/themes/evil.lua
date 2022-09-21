@@ -11,48 +11,34 @@ local settings = {
         default_color = "",
         oldfiles_amount = 0,
     },
-    header_2 = {
+    body = {
         type = "text",
-        oldfiles_directory = false,
         align = "center",
         fold_section = false,
-        title = "Quote",
+        title = "Header",
         margin = 5,
-        content = require("startup.functions").quote(),
+        content = {'v' .. vim.version().major .. '.' .. vim.version().minor .. '.' .. vim.version().patch},
         highlight = "Constant",
         default_color = "",
         oldfiles_amount = 0,
     },
-    -- name which will be displayed and command
-    body = {
+    body_2 = {
         type = "mapping",
         align = "center",
-        fold_section = true,
+        fold_section = false,
         title = "Basic Commands",
         margin = 5,
         content = {
-            { " Find File", "Telescope find_files", "<leader>ff" },
-            { " Find Word", "Telescope live_grep", "<leader>lg" },
-            { " Recent Files", "Telescope oldfiles", "<leader>of" },
-            { " File Browser", "Telescope file_browser", "<leader>fb" },
-            { " Colorschemes", "Telescope colorscheme", "<leader>cs" },
-            { " New File", "lua require'startup'.new_file()", "<leader>nf" },
+            { "Find File", "Telescope find_files", "<leader>ff" },
+            { "Find Word", "Telescope live_grep", "<leader>lg" },
+            { "Recent Files", "Telescope oldfiles", "<leader>of" },
+            { "File Browser", "Telescope file_browser", "<leader>fb" },
+            { "Colorschemes", "Telescope colorscheme", "<leader>cs" },
+            { "New File", "lua require'startup'.new_file()", "<leader>nf" },
         },
         highlight = "String",
         default_color = "",
         oldfiles_amount = 0,
-    },
-    body_2 = {
-        type = "oldfiles",
-        oldfiles_directory = true,
-        align = "center",
-        fold_section = true,
-        title = "Oldfiles of Directory",
-        margin = 5,
-        content = {},
-        highlight = "String",
-        default_color = "#FFFFFF",
-        oldfiles_amount = 5,
     },
     footer = {
         type = "oldfiles",
@@ -70,8 +56,8 @@ local settings = {
     clock = {
         type = "text",
         content = function()
-            local clock = " " .. os.date("%H:%M")
-            local date = " " .. os.date("%d-%m-%y")
+            local clock = os.date("%H:%M")
+            local date = os.date("%d-%m-%y")
             return { clock, date }
         end,
         oldfiles_directory = false,
@@ -113,12 +99,8 @@ local settings = {
     },
     parts = {
         "header",
-        "header_2",
         "body",
-        "body_2",
-        "footer",
-        "clock",
-        "footer_2",
+        "body_2"
     },
 }
 return settings
